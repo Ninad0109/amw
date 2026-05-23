@@ -15,7 +15,7 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
     rel="stylesheet" />
-  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
   <script id="tailwind-config">
     tailwind.config = {
       darkMode: "class",
@@ -88,25 +88,33 @@
           },
           "fontFamily": {
             "headline-xl": ["Bebas Neue"],
+            "headline-xl-mobile": ["Bebas Neue"],
             "display-lg-mobile": ["Bebas Neue"],
             "headline-lg": ["Bebas Neue"],
+            "headline-lg-mobile": ["Bebas Neue"],
             "body-md": ["Inter"],
             "display-lg": ["Bebas Neue"],
             "label-lg": ["Inter"],
             "label-sm": ["Inter"],
             "headline-md": ["Bebas Neue"],
-            "body-lg": ["Inter"]
+            "headline-md-mobile": ["Bebas Neue"],
+            "body-lg": ["Inter"],
+            "body-lg-mobile": ["Inter"]
           },
           "fontSize": {
             "headline-xl": ["72px", { "lineHeight": "120%", "letterSpacing": "0.02em", "fontWeight": "400" }],
+            "headline-xl-mobile": ["40px", { "lineHeight": "120%", "letterSpacing": "0.02em", "fontWeight": "400" }],
             "display-lg-mobile": ["64px", { "lineHeight": "110%", "letterSpacing": "-0.01em", "fontWeight": "400" }],
             "headline-lg": ["48px", { "lineHeight": "120%", "letterSpacing": "0.03em", "fontWeight": "400" }],
+            "headline-lg-mobile": ["32px", { "lineHeight": "120%", "letterSpacing": "0.03em", "fontWeight": "400" }],
             "body-md": ["16px", { "lineHeight": "160%", "letterSpacing": "0em", "fontWeight": "400" }],
             "display-lg": ["120px", { "lineHeight": "110%", "letterSpacing": "-0.02em", "fontWeight": "400" }],
             "label-lg": ["14px", { "lineHeight": "100%", "letterSpacing": "0.1em", "fontWeight": "600" }],
             "label-sm": ["12px", { "lineHeight": "100%", "letterSpacing": "0.05em", "fontWeight": "500" }],
             "headline-md": ["32px", { "lineHeight": "120%", "letterSpacing": "0.05em", "fontWeight": "400" }],
-            "body-lg": ["20px", { "lineHeight": "160%", "letterSpacing": "-0.01em", "fontWeight": "400" }]
+            "headline-md-mobile": ["24px", { "lineHeight": "120%", "letterSpacing": "0.05em", "fontWeight": "400" }],
+            "body-lg": ["20px", { "lineHeight": "160%", "letterSpacing": "-0.01em", "fontWeight": "400" }],
+            "body-lg-mobile": ["17px", { "lineHeight": "150%", "letterSpacing": "-0.01em", "fontWeight": "400" }]
           }
         },
       },
@@ -129,10 +137,10 @@
 
 <body class="bg-surface text-on-surface font-body-md">
   <!-- TopNavBar -->
-  <nav class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-2xl">
-    <div class="flex justify-between items-center max-w-[1440px] mx-auto px-margin-desktop py-8">
-      <div class="font-headline-md text-headline-md tracking-tight text-primary">ATHARVA MEDIA WORKS</div>
-      <div class="hidden md:flex gap-gutter items-center">
+  <nav class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-2xl border-b border-outline/5">
+    <div class="flex justify-between items-center max-w-[1440px] mx-auto px-6 md:px-20 py-4 md:py-8">
+      <a href="#" class="font-headline-md-mobile md:font-headline-md text-headline-md-mobile md:text-headline-md tracking-tight text-primary">ATHARVA MEDIA WORKS</a>
+      <div class="hidden md:flex gap-8 items-center">
         <a class="font-label-lg text-label-lg text-on-surface-variant hover:text-primary transition-colors"
           href="#services">SERVICES</a>
         <a class="font-label-lg text-label-lg text-on-surface-variant hover:text-primary transition-colors"
@@ -142,26 +150,42 @@
         <a class="ml-4 bg-primary text-on-primary px-8 py-3 rounded-full font-label-lg text-label-lg hover:opacity-80 transition-opacity active:scale-95 transition-transform duration-200"
           href="mailto:ATHARVAVADNERE0901@GMAIL.COM">GET IN TOUCH</a>
       </div>
+      <!-- Mobile menu button -->
+      <button id="mobile-menu-btn" class="md:hidden flex items-center justify-center p-2 text-primary focus:outline-none" aria-label="Toggle Menu">
+        <span class="material-symbols-outlined text-3xl">menu</span>
+      </button>
+    </div>
+
+    <!-- Mobile Menu Drawer -->
+    <div id="mobile-menu" class="hidden fixed inset-x-0 top-[64px] z-40 bg-surface/95 backdrop-blur-2xl w-full h-[calc(100vh-64px)] md:hidden flex flex-col justify-start px-6 py-8 border-t border-outline/5 transition-all duration-300">
+      <div class="flex flex-col gap-6 items-start">
+        <a class="font-headline-md-mobile text-headline-md-mobile text-on-surface-variant hover:text-primary transition-colors w-full py-2 border-b border-outline/5"
+          href="#services" onclick="toggleMobileMenu()">SERVICES</a>
+        <a class="font-headline-md-mobile text-headline-md-mobile text-on-surface-variant hover:text-primary transition-colors w-full py-2 border-b border-outline/5"
+          href="#work" onclick="toggleMobileMenu()">WORK</a>
+        <a class="font-headline-md-mobile text-headline-md-mobile text-on-surface-variant hover:text-primary transition-colors w-full py-2 border-b border-outline/5"
+          href="#contact" onclick="toggleMobileMenu()">CONTACT</a>
+        <a class="w-full mt-6 bg-primary text-on-primary py-4 rounded-full text-center font-label-lg text-label-lg hover:opacity-80 active:scale-95 transition-all"
+          href="mailto:ATHARVAVADNERE0901@GMAIL.COM" onclick="toggleMobileMenu()">GET IN TOUCH</a>
+      </div>
     </div>
   </nav>
   <main>
     <!-- 1. Hero Section -->
     <section
-      class="pt-stack-xl pb-stack-lg max-w-[1440px] mx-auto px-margin-desktop min-h-screen flex flex-col justify-center">
-      <div class="grid md:grid-cols-2 gap-stack-lg items-center">
-        <div class="space-y-stack-md">
-          <h1 class="font-display-lg text-display-lg uppercase leading-none">Social Media Marketing <br />&amp; Brand
-            Presence</h1>
-          <p class="font-body-lg text-body-lg text-on-surface-variant max-w-lg">Helping brands grow through content
-            creation, social media strategy, reels editing, and digital branding.</p>
-          <div class="flex gap-4">
-            <a class="bg-primary text-on-primary px-10 py-5 rounded-full font-label-lg text-label-lg hover:opacity-90 transition-all"
+      class="pt-28 md:pt-[160px] pb-10 md:pb-20 max-w-[1440px] mx-auto px-6 md:px-20 min-h-[auto] md:min-h-screen flex flex-col justify-center">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-20 items-center">
+        <div class="space-y-6 md:space-y-stack-md">
+          <h1 class="font-display-lg text-display-lg-mobile md:text-display-lg uppercase leading-[1.05] md:leading-none">Social Media Marketing <br />&amp; Brand Presence</h1>
+          <p class="font-body-lg-mobile md:font-body-lg text-body-lg-mobile md:text-body-lg text-on-surface-variant max-w-lg">Helping brands grow through content creation, social media strategy, reels editing, and digital branding.</p>
+          <div class="flex flex-col sm:flex-row gap-3">
+            <a class="bg-primary text-on-primary px-8 py-4 md:px-10 md:py-5 rounded-full font-label-lg text-label-lg hover:opacity-90 text-center transition-all"
               href="#services">VIEW SERVICES</a>
-            <a class="border border-secondary text-secondary px-10 py-5 rounded-full font-label-lg text-label-lg tracking-widest hover:bg-secondary hover:text-on-secondary transition-all"
+            <a class="border border-secondary text-secondary px-8 py-4 md:px-10 md:py-5 rounded-full font-label-lg text-label-lg tracking-widest hover:bg-secondary hover:text-on-secondary text-center transition-all"
               href="#contact">CONTACT</a>
           </div>
         </div>
-        <div class="relative aspect-square rounded-xl overflow-hidden ambient-shadow">
+        <div class="relative aspect-[4/3] md:aspect-square rounded-xl overflow-hidden ambient-shadow w-full">
           <img class="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
             data-alt="A clean, minimalist high-end office workspace featuring a sleek laptop, an expensive camera lens, and high-quality recording equipment on a light wood desk. The scene is illuminated by soft, natural morning light streaming through large windows, creating a peaceful and creative atmosphere. The palette consists of muted beiges, charcoal blacks, and warm wood tones, reflecting a professional content creation studio."
             src="https://lh3.googleusercontent.com/aida-public/AB6AXuA9fY3AynTVohj7NbxdI4CfchdWfiQ2-jRl7CpMg14wMb8LaEo_KJtH8jUr0gyiW7UWZyyCO4op1JHGUelholDQpvf61svLn25DjyE8tA0adcNJahYZBziRYluTVlVc04sOXHMdF8FG5djovU5naRrkhWQXdhhqvRIiWMNUtPJMBKkUVTdDj894l6lamcMInDLXlHHkQXymDNj24tHi0TiBYic0mH0XVHqs7GtfZT92r3O6Kzd2UfQQCBySHPAzzOo65C25LWDNyis" />
@@ -169,39 +193,39 @@
       </div>
     </section>
     <!-- 2. Crafting Digital Presence -->
-    <section class="py-stack-xl bg-surface-container-low">
-      <div class="max-w-[1440px] mx-auto px-margin-desktop text-center">
-        <span class="font-label-lg text-label-lg text-secondary tracking-[0.2em] block mb-stack-md">THE
+    <section class="py-12 md:py-[160px] bg-surface-container-low">
+      <div class="max-w-[1440px] mx-auto px-6 md:px-20 text-center">
+        <span class="font-label-lg text-label-lg text-secondary tracking-[0.2em] block mb-4 md:mb-10">THE
           PHILOSOPHY</span>
-        <h2 class="font-headline-xl text-headline-xl mb-stack-lg">Crafting Digital Presence</h2>
-        <div class="grid md:grid-cols-5 gap-stack-md text-center">
+        <h2 class="font-headline-xl-mobile md:text-headline-xl text-headline-xl-mobile md:text-headline-xl mb-8 md:mb-20">Crafting Digital Presence</h2>
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6 md:gap-10 text-center">
           <div class="space-y-4">
-            <div class="aspect-square rounded-full overflow-hidden ambient-shadow mx-auto w-32 h-32 md:w-40 md:h-40">
-              <img src="content_creation.png" alt="Content Creation" class="w-full h-full object-cover" />
+            <div class="aspect-square rounded-full overflow-hidden ambient-shadow mx-auto w-28 h-28 md:w-40 md:h-40">
+              <img loading="lazy" decoding="async" src="content_creation.png" alt="Content Creation" class="w-full h-full object-cover" />
             </div>
             <h4 class="font-label-lg text-label-lg text-primary">CONTENT CREATION</h4>
           </div>
           <div class="space-y-4">
-            <div class="aspect-square rounded-full overflow-hidden ambient-shadow mx-auto w-32 h-32 md:w-40 md:h-40">
-              <img src="instagram_growth.png" alt="Instagram Growth" class="w-full h-full object-cover" />
+            <div class="aspect-square rounded-full overflow-hidden ambient-shadow mx-auto w-28 h-28 md:w-40 md:h-40">
+              <img loading="lazy" decoding="async" src="instagram_growth.png" alt="Instagram Growth" class="w-full h-full object-cover" />
             </div>
             <h4 class="font-label-lg text-label-lg text-primary">INSTAGRAM GROWTH</h4>
           </div>
           <div class="space-y-4">
-            <div class="aspect-square rounded-full overflow-hidden ambient-shadow mx-auto w-32 h-32 md:w-40 md:h-40">
-              <img src="reels_strategy.png" alt="Reels Strategy" class="w-full h-full object-cover" />
+            <div class="aspect-square rounded-full overflow-hidden ambient-shadow mx-auto w-28 h-28 md:w-40 md:h-40">
+              <img loading="lazy" decoding="async" src="reels_strategy.png" alt="Reels Strategy" class="w-full h-full object-cover" />
             </div>
             <h4 class="font-label-lg text-label-lg text-primary">REELS STRATEGY</h4>
           </div>
           <div class="space-y-4">
-            <div class="aspect-square rounded-full overflow-hidden ambient-shadow mx-auto w-32 h-32 md:w-40 md:h-40">
-              <img src="visual_storytelling.png" alt="Visual Storytelling" class="w-full h-full object-cover" />
+            <div class="aspect-square rounded-full overflow-hidden ambient-shadow mx-auto w-28 h-28 md:w-40 md:h-40">
+              <img loading="lazy" decoding="async" src="visual_storytelling.png" alt="Visual Storytelling" class="w-full h-full object-cover" />
             </div>
             <h4 class="font-label-lg text-label-lg text-primary">VISUAL STORYTELLING</h4>
           </div>
-          <div class="space-y-4">
-            <div class="aspect-square rounded-full overflow-hidden ambient-shadow mx-auto w-32 h-32 md:w-40 md:h-40">
-              <img src="social_management.png" alt="Social Management" class="w-full h-full object-cover" />
+          <div class="space-y-4 col-span-2 sm:col-span-1">
+            <div class="aspect-square rounded-full overflow-hidden ambient-shadow mx-auto w-28 h-28 md:w-40 md:h-40">
+              <img loading="lazy" decoding="async" src="social_management.png" alt="Social Management" class="w-full h-full object-cover" />
             </div>
             <h4 class="font-label-lg text-label-lg text-primary">SOCIAL MANAGEMENT</h4>
           </div>
@@ -209,173 +233,166 @@
       </div>
     </section>
     <!-- 9. Previous Website Projects -->
-    <section class="py-stack-xl max-w-[1440px] mx-auto px-margin-desktop" id="work">
-      <h2 class="font-headline-xl text-headline-xl mb-stack-lg">Previous Website Projects</h2>
-      <div class="grid md:grid-cols-3 gap-gutter">
+    <section class="py-12 md:py-[160px] max-w-[1440px] mx-auto px-6 md:px-20" id="work">
+      <h2 class="font-headline-xl-mobile md:font-headline-xl text-headline-xl-mobile md:text-headline-xl mb-8 md:mb-20">Previous Website Projects</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
         <!-- Funvention -->
-        <div class="group cursor-pointer">
-          <div class="aspect-video rounded-xl overflow-hidden bg-surface-container mb-6 ambient-shadow">
-            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+        <div class="group cursor-pointer flex flex-col h-full bg-surface-container-lowest p-5 rounded-3xl border border-outline/5 hover:border-outline/10 hover:bg-surface-container-low transition-all duration-300 ambient-shadow">
+          <div class="aspect-video rounded-2xl overflow-hidden bg-surface-container mb-5 ambient-shadow">
+            <img loading="lazy" decoding="async" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
               alt="Funvention" src="Funvention.jpeg" />
           </div>
-          <h3 class="font-headline-md text-headline-md">Funvention</h3>
-          <p class="font-label-sm text-label-sm text-secondary tracking-widest mb-2 uppercase">ED-TECH &amp; TOYS</p>
-          <p class="font-body-md text-body-md text-on-surface-variant">Creator of website and handling Instagram handle
+          <p class="font-label-sm text-label-sm text-secondary tracking-widest mb-1 uppercase">ED-TECH &amp; TOYS</p>
+          <h3 class="font-headline-md text-headline-md mb-2">Funvention</h3>
+          <p class="font-body-md text-body-md text-on-surface-variant flex-grow">Creator of website and handling Instagram handle
             - <a href="https://instagram.com/ATHARVAMEDIAWORKS" target="_blank" rel="noopener noreferrer"
-              class="hover:text-primary transition-colors">@ATHARVAMEDIAWORKS</a></p>
+              class="hover:text-primary transition-colors border-b border-secondary/30">@ATHARVAMEDIAWORKS</a></p>
         </div>
         <!-- Eduketive -->
-        <div class="group cursor-pointer">
-          <div class="aspect-video rounded-xl overflow-hidden bg-surface-container mb-6 ambient-shadow bg-white">
-            <img class="w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-500"
+        <div class="group cursor-pointer flex flex-col h-full bg-surface-container-lowest p-5 rounded-3xl border border-outline/5 hover:border-outline/10 hover:bg-surface-container-low transition-all duration-300 ambient-shadow">
+          <div class="aspect-video rounded-2xl overflow-hidden bg-surface-container mb-5 ambient-shadow bg-white flex items-center justify-center">
+            <img loading="lazy" decoding="async" class="w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-500"
               alt="Eduketive Logo" src="eduketive_logo.jpg" />
           </div>
-          <h3 class="font-headline-md text-headline-md">Eduketive</h3>
-          <p class="font-label-sm text-label-sm text-secondary tracking-widest mb-2 uppercase">LEARNING MANAGEMENT</p>
-          <p class="font-body-md text-body-md text-on-surface-variant">Streamlined interface for modern digital
-            education.</p>
+          <p class="font-label-sm text-label-sm text-secondary tracking-widest mb-1 uppercase">LEARNING MANAGEMENT</p>
+          <h3 class="font-headline-md text-headline-md mb-2">Eduketive</h3>
+          <p class="font-body-md text-body-md text-on-surface-variant flex-grow">Streamlined interface for modern digital education.</p>
         </div>
         <!-- IndiAyurveda -->
-        <div class="group cursor-pointer">
-          <div class="aspect-video rounded-xl overflow-hidden bg-surface-container mb-6 ambient-shadow">
-            <img class="w-full h-full object-contain scale-125 group-hover:scale-[1.35] transition-transform duration-500"
+        <div class="group cursor-pointer flex flex-col h-full bg-surface-container-lowest p-5 rounded-3xl border border-outline/5 hover:border-outline/10 hover:bg-surface-container-low transition-all duration-300 ambient-shadow">
+          <div class="aspect-video rounded-2xl overflow-hidden bg-surface-container mb-5 ambient-shadow flex items-center justify-center">
+            <img loading="lazy" decoding="async" class="w-full h-full object-contain scale-125 group-hover:scale-[1.35] transition-transform duration-500"
               alt="India Ayurveda Logo"
               src="india_ayurveda_logo.jpg" />
           </div>
-          <h3 class="font-headline-md text-headline-md">India Ayurveda</h3>
-          <p class="font-label-sm text-label-sm text-secondary tracking-widest mb-2 uppercase">WELLNESS &amp; HERBAL</p>
-          <p class="font-body-md text-body-md text-on-surface-variant">Instagram and Facebook handler</p>
+          <p class="font-label-sm text-label-sm text-secondary tracking-widest mb-1 uppercase">WELLNESS &amp; HERBAL</p>
+          <h3 class="font-headline-md text-headline-md mb-2">India Ayurveda</h3>
+          <p class="font-body-md text-body-md text-on-surface-variant flex-grow">Instagram and Facebook handler for holistic ayurvedic solutions.</p>
         </div>
       </div>
     </section>
     <!-- 8. Projected Growth Metrics -->
-    <section class="py-stack-xl bg-surface-container">
-      <div class="max-w-[1440px] mx-auto px-margin-desktop">
-        <div class="max-w-3xl mx-auto">
-          <h2 class="font-headline-lg text-headline-lg text-center mb-stack-lg">Projected Growth Metrics</h2>
-          <div class="space-y-stack-md">
-            <div class="space-y-2">
-              <div class="flex justify-between font-label-lg text-label-lg uppercase">
-                <span>Reach Growth</span>
-                <span>+25%</span>
-              </div>
-              <div class="h-1 w-full bg-outline/10 rounded-full">
-                <div class="h-full bg-primary w-[25%] rounded-full"></div>
-              </div>
+    <!-- 8. Projected Growth Metrics -->
+    <section class="py-12 md:py-[160px] bg-surface-container">
+      <div class="max-w-[1440px] mx-auto px-6 md:px-20">
+        <h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-center mb-8 md:mb-20">Projected Growth Metrics</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+          <!-- Metric Card 1 -->
+          <div class="bg-surface p-5 rounded-2xl border border-outline/5 ambient-shadow flex flex-col justify-between">
+            <div class="flex justify-between items-start mb-4 gap-2">
+              <span class="font-label-lg text-label-lg uppercase tracking-wider text-on-surface-variant">Reach Growth</span>
+              <span class="font-headline-md text-headline-md text-primary leading-none">+25%</span>
             </div>
-            <div class="space-y-2">
-              <div class="flex justify-between font-label-lg text-label-lg uppercase">
-                <span>Engagement Increase</span>
-                <span>+15%</span>
-              </div>
-              <div class="h-1 w-full bg-outline/10 rounded-full">
-                <div class="h-full bg-secondary w-[15%] rounded-full"></div>
-              </div>
+            <div class="h-1.5 w-full bg-outline/10 rounded-full overflow-hidden">
+              <div class="h-full bg-primary w-[25%] rounded-full"></div>
             </div>
-            <div class="space-y-2">
-              <div class="flex justify-between font-label-lg text-label-lg uppercase">
-                <span>Brand Visibility</span>
-                <span>+30%</span>
-              </div>
-              <div class="h-1 w-full bg-outline/10 rounded-full">
-                <div class="h-full bg-primary w-[30%] rounded-full"></div>
-              </div>
+          </div>
+          <!-- Metric Card 2 -->
+          <div class="bg-surface p-5 rounded-2xl border border-outline/5 ambient-shadow flex flex-col justify-between">
+            <div class="flex justify-between items-start mb-4 gap-2">
+              <span class="font-label-lg text-label-lg uppercase tracking-wider text-on-surface-variant text-left">Engagement Increase</span>
+              <span class="font-headline-md text-headline-md text-secondary leading-none">+15%</span>
             </div>
-            <div class="space-y-2">
-              <div class="flex justify-between font-label-lg text-label-lg uppercase">
-                <span>Audience Retention</span>
-                <span>+18%</span>
-              </div>
-              <div class="h-1 w-full bg-outline/10 rounded-full">
-                <div class="h-full bg-secondary w-[18%] rounded-full"></div>
-              </div>
+            <div class="h-1.5 w-full bg-outline/10 rounded-full overflow-hidden">
+              <div class="h-full bg-secondary w-[15%] rounded-full"></div>
+            </div>
+          </div>
+          <!-- Metric Card 3 -->
+          <div class="bg-surface p-5 rounded-2xl border border-outline/5 ambient-shadow flex flex-col justify-between">
+            <div class="flex justify-between items-start mb-4 gap-2">
+              <span class="font-label-lg text-label-lg uppercase tracking-wider text-on-surface-variant">Brand Visibility</span>
+              <span class="font-headline-md text-headline-md text-primary leading-none">+30%</span>
+            </div>
+            <div class="h-1.5 w-full bg-outline/10 rounded-full overflow-hidden">
+              <div class="h-full bg-primary w-[30%] rounded-full"></div>
+            </div>
+          </div>
+          <!-- Metric Card 4 -->
+          <div class="bg-surface p-5 rounded-2xl border border-outline/5 ambient-shadow flex flex-col justify-between">
+            <div class="flex justify-between items-start mb-4 gap-2">
+              <span class="font-label-lg text-label-lg uppercase tracking-wider text-on-surface-variant text-left">Audience Retention</span>
+              <span class="font-headline-md text-headline-md text-secondary leading-none">+18%</span>
+            </div>
+            <div class="h-1.5 w-full bg-outline/10 rounded-full overflow-hidden">
+              <div class="h-full bg-secondary w-[18%] rounded-full"></div>
             </div>
           </div>
         </div>
       </div>
     </section>
     <!-- 3. Full-Suite Digital Solutions -->
-    <section class="py-stack-xl max-w-[1440px] mx-auto px-margin-desktop" id="services">
-      <h2 class="font-headline-lg text-headline-lg mb-stack-lg border-b border-outline/10 pb-8">Full-Suite Digital
-        Solutions</h2>
-      <div class="grid md:grid-cols-4 gap-gutter">
+    <section class="py-12 md:py-[160px] max-w-[1440px] mx-auto px-6 md:px-20" id="services">
+      <h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg mb-6 md:mb-20 border-b border-outline/10 pb-4 md:pb-8">Full-Suite Digital Solutions</h2>
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8">
         <!-- Service Card 1 -->
         <div
-          class="p-8 rounded-lg bg-surface border border-outline/5 ambient-shadow hover:bg-surface-container transition-colors group">
-          <span class="material-symbols-outlined text-secondary mb-6 text-3xl">public</span>
-          <h3 class="font-headline-md text-headline-md mb-2">SMM</h3>
-          <p class="font-body-md text-body-md text-on-surface-variant">Comprehensive management across all digital
-            channels.</p>
+          class="p-4 sm:p-6 md:p-8 rounded-lg bg-surface border border-outline/5 ambient-shadow hover:bg-surface-container hover:-translate-y-0.5 transition-all duration-300 flex flex-col h-full group">
+          <span class="material-symbols-outlined text-secondary mb-3 md:mb-6 text-2xl md:text-3xl">public</span>
+          <h3 class="font-headline-md-mobile md:font-headline-md text-headline-md-mobile md:text-headline-md mb-1 md:mb-2">SMM</h3>
+          <p class="font-body-md text-sm md:text-body-md text-on-surface-variant flex-grow">Comprehensive management across all digital channels.</p>
         </div>
         <!-- Service Card 2 -->
         <div
-          class="p-8 rounded-lg bg-surface border border-outline/5 ambient-shadow hover:bg-surface-container transition-colors">
-          <span class="material-symbols-outlined text-secondary mb-6 text-3xl">movie</span>
-          <h3 class="font-headline-md text-headline-md mb-2">REELS STRATEGY</h3>
-          <p class="font-body-md text-body-md text-on-surface-variant">High-conversion short-form video narrative
-            design.</p>
+          class="p-4 sm:p-6 md:p-8 rounded-lg bg-surface border border-outline/5 ambient-shadow hover:bg-surface-container hover:-translate-y-0.5 transition-all duration-300 flex flex-col h-full">
+          <span class="material-symbols-outlined text-secondary mb-3 md:mb-6 text-2xl md:text-3xl">movie</span>
+          <h3 class="font-headline-md-mobile md:font-headline-md text-headline-md-mobile md:text-headline-md mb-1 md:mb-2">REELS STRATEGY</h3>
+          <p class="font-body-md text-sm md:text-body-md text-on-surface-variant flex-grow">High-conversion short-form video narrative design.</p>
         </div>
         <!-- Service Card 3 -->
         <div
-          class="p-8 rounded-lg bg-surface border border-outline/5 ambient-shadow hover:bg-surface-container transition-colors">
-          <span class="material-symbols-outlined text-secondary mb-6 text-3xl">event_note</span>
-          <h3 class="font-headline-md text-headline-md mb-2">CONTENT PLANNING</h3>
-          <p class="font-body-md text-body-md text-on-surface-variant">Strategic calendars aligned with business
-            objectives.</p>
+          class="p-4 sm:p-6 md:p-8 rounded-lg bg-surface border border-outline/5 ambient-shadow hover:bg-surface-container hover:-translate-y-0.5 transition-all duration-300 flex flex-col h-full">
+          <span class="material-symbols-outlined text-secondary mb-3 md:mb-6 text-2xl md:text-3xl">event_note</span>
+          <h3 class="font-headline-md-mobile md:font-headline-md text-headline-md-mobile md:text-headline-md mb-1 md:mb-2">CONTENT PLANNING</h3>
+          <p class="font-body-md text-sm md:text-body-md text-on-surface-variant flex-grow">Strategic calendars aligned with business objectives.</p>
         </div>
         <!-- Service Card 4 -->
         <div
-          class="p-8 rounded-lg bg-surface border border-outline/5 ambient-shadow hover:bg-surface-container transition-colors">
-          <span class="material-symbols-outlined text-secondary mb-6 text-3xl">auto_awesome</span>
-          <h3 class="font-headline-md text-headline-md mb-2">BRAND IDENTITY</h3>
-          <p class="font-body-md text-body-md text-on-surface-variant">Visual aesthetics that command authority in your
-            niche.</p>
+          class="p-4 sm:p-6 md:p-8 rounded-lg bg-surface border border-outline/5 ambient-shadow hover:bg-surface-container hover:-translate-y-0.5 transition-all duration-300 flex flex-col h-full">
+          <span class="material-symbols-outlined text-secondary mb-3 md:mb-6 text-2xl md:text-3xl">auto_awesome</span>
+          <h3 class="font-headline-md-mobile md:font-headline-md text-headline-md-mobile md:text-headline-md mb-1 md:mb-2">BRAND IDENTITY</h3>
+          <p class="font-body-md text-sm md:text-body-md text-on-surface-variant flex-grow">Visual aesthetics that command authority in your niche.</p>
         </div>
         <!-- Row 2 -->
         <div
-          class="p-8 rounded-lg bg-surface border border-outline/5 ambient-shadow hover:bg-surface-container transition-colors">
-          <span class="material-symbols-outlined text-secondary mb-6 text-3xl">trending_up</span>
-          <h3 class="font-headline-md text-headline-md mb-2">INSTAGRAM GROWTH</h3>
-          <p class="font-body-md text-body-md text-on-surface-variant">Data-driven tactics for follower and reach
-            expansion.</p>
+          class="p-4 sm:p-6 md:p-8 rounded-lg bg-surface border border-outline/5 ambient-shadow hover:bg-surface-container hover:-translate-y-0.5 transition-all duration-300 flex flex-col h-full">
+          <span class="material-symbols-outlined text-secondary mb-3 md:mb-6 text-2xl md:text-3xl">trending_up</span>
+          <h3 class="font-headline-md-mobile md:font-headline-md text-headline-md-mobile md:text-headline-md mb-1 md:mb-2">INSTAGRAM GROWTH</h3>
+          <p class="font-body-md text-sm md:text-body-md text-on-surface-variant flex-grow">Data-driven tactics for follower and reach expansion.</p>
         </div>
         <div
-          class="p-8 rounded-lg bg-surface border border-outline/5 ambient-shadow hover:bg-surface-container transition-colors">
-          <span class="material-symbols-outlined text-secondary mb-6 text-3xl">groups</span>
-          <h3 class="font-headline-md text-headline-md mb-2">ENGAGEMENT</h3>
-          <p class="font-body-md text-body-md text-on-surface-variant">Building community through meaningful
-            interactions.</p>
+          class="p-4 sm:p-6 md:p-8 rounded-lg bg-surface border border-outline/5 ambient-shadow hover:bg-surface-container hover:-translate-y-0.5 transition-all duration-300 flex flex-col h-full">
+          <span class="material-symbols-outlined text-secondary mb-3 md:mb-6 text-2xl md:text-3xl">groups</span>
+          <h3 class="font-headline-md-mobile md:font-headline-md text-headline-md-mobile md:text-headline-md mb-1 md:mb-2">ENGAGEMENT</h3>
+          <p class="font-body-md text-sm md:text-body-md text-on-surface-variant flex-grow">Building community through meaningful interactions.</p>
         </div>
         <div
-          class="p-8 rounded-lg bg-surface border border-outline/5 ambient-shadow hover:bg-surface-container transition-colors">
-          <span class="material-symbols-outlined text-secondary mb-6 text-3xl">palette</span>
-          <h3 class="font-headline-md text-headline-md mb-2">CREATIVE DIRECTION</h3>
-          <p class="font-body-md text-body-md text-on-surface-variant">Overseeing the visual harmony of every digital
-            touchpoint.</p>
+          class="p-4 sm:p-6 md:p-8 rounded-lg bg-surface border border-outline/5 ambient-shadow hover:bg-surface-container hover:-translate-y-0.5 transition-all duration-300 flex flex-col h-full">
+          <span class="material-symbols-outlined text-secondary mb-3 md:mb-6 text-2xl md:text-3xl">palette</span>
+          <h3 class="font-headline-md-mobile md:font-headline-md text-headline-md-mobile md:text-headline-md mb-1 md:mb-2">CREATIVE DIRECTION</h3>
+          <p class="font-body-md text-sm md:text-body-md text-on-surface-variant flex-grow">Overseeing the visual harmony of every digital touchpoint.</p>
         </div>
         <div
-          class="p-8 rounded-lg bg-surface border border-outline/5 ambient-shadow hover:bg-surface-container transition-colors">
-          <span class="material-symbols-outlined text-secondary mb-6 text-3xl">bolt</span>
-          <h3 class="font-headline-md text-headline-md mb-2">ORGANIC GROWTH</h3>
-          <p class="font-body-md text-body-md text-on-surface-variant">Pure interest-based reach without heavy ad spend.
-          </p>
+          class="p-4 sm:p-6 md:p-8 rounded-lg bg-surface border border-outline/5 ambient-shadow hover:bg-surface-container hover:-translate-y-0.5 transition-all duration-300 flex flex-col h-full">
+          <span class="material-symbols-outlined text-secondary mb-3 md:mb-6 text-2xl md:text-3xl">bolt</span>
+          <h3 class="font-headline-md-mobile md:font-headline-md text-headline-md-mobile md:text-headline-md mb-1 md:mb-2">ORGANIC GROWTH</h3>
+          <p class="font-body-md text-sm md:text-body-md text-on-surface-variant flex-grow">Pure interest-based reach without heavy ad spend.</p>
         </div>
       </div>
     </section>
     <!-- 4. Why Social Presence Matters (Stats) -->
-    <section class="py-stack-xl bg-primary text-on-primary">
-      <div class="max-w-[1440px] mx-auto px-margin-desktop">
-        <div class="grid md:grid-cols-2 gap-stack-lg items-center">
+    <section class="py-12 md:py-[160px] bg-primary text-on-primary">
+      <div class="max-w-[1440px] mx-auto px-6 md:px-20">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-20 items-center">
           <div>
-            <h2 class="font-headline-xl text-headline-xl mb-stack-md">Why Social Presence Matters</h2>
-            <p class="font-body-lg text-body-lg text-on-primary-container max-w-md">In an era of digital saturation,
+            <h2 class="font-headline-xl-mobile md:font-headline-xl text-headline-xl-mobile md:text-headline-xl mb-4 md:mb-10">Why Social Presence Matters</h2>
+            <p class="font-body-lg-mobile md:font-body-lg text-body-lg-mobile md:text-body-lg text-on-primary-container max-w-md">In an era of digital saturation,
               your presence is your currency. We transform invisible brands into market leaders through intentional
               storytelling.</p>
           </div>
-          <div class="grid grid-cols-1 gap-gutter">
-            <div class="bg-primary-container p-stack-md rounded-lg">
+          <div class="grid grid-cols-1 gap-4 md:gap-8">
+            <div class="bg-primary-container p-5 md:p-10 rounded-lg">
               <div class="flex justify-between items-end mb-4">
-                <span class="font-headline-xl text-headline-xl leading-none">87%</span>
+                <span class="font-headline-xl-mobile md:font-headline-xl text-headline-xl-mobile md:text-headline-xl leading-none">87%</span>
                 <span class="font-label-lg text-label-lg text-secondary"></span>
               </div>
               <div class="h-1 bg-on-primary-container/20 rounded-full overflow-hidden">
@@ -384,64 +401,65 @@
               <p class="font-label-lg text-label-lg mt-4 opacity-70 uppercase tracking-widest">Discovery Through Social
                 Channels</p>
             </div>
-            <div class="bg-primary-container p-stack-md rounded-lg">
+            <div class="bg-primary-container p-5 md:p-10 rounded-lg">
               <div class="flex justify-between items-end mb-4">
-                <span class="font-headline-xl text-headline-xl leading-none">60%</span>
+                <span class="font-headline-xl-mobile md:font-headline-xl text-headline-xl-mobile md:text-headline-xl leading-none">60%</span>
                 <span class="font-label-lg text-label-lg text-secondary"></span>
               </div>
               <div class="h-1 bg-on-primary-container/20 rounded-full overflow-hidden">
                 <div class="h-full bg-secondary w-[60%]"></div>
               </div>
-              <p class="font-label-lg text-label-lg mt-4 opacity-70 uppercase tracking-widest">Direct Sales Influence
-              </p>
+              <p class="font-label-lg text-label-lg mt-4 opacity-70 uppercase tracking-widest">Direct Sales Influence</p>
             </div>
           </div>
         </div>
       </div>
     </section>
     <!-- 5. High-Impact Content Strategy -->
-    <section class="py-stack-xl max-w-[1440px] mx-auto px-margin-desktop">
-      <h2 class="font-headline-lg text-headline-lg text-center mb-stack-lg">High-Impact Content Strategy</h2>
-      <div class="grid md:grid-cols-4 gap-gutter">
-        <div class="flex flex-col gap-4">
-          <div class="aspect-[9/16] rounded-xl overflow-hidden ambient-shadow">
-            <img class="w-full h-full object-cover"
+    <section class="py-12 md:py-[160px] max-w-[1440px] mx-auto px-6 md:px-20">
+      <h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-center mb-8 md:mb-20">High-Impact Content Strategy</h2>
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8">
+        <div class="flex flex-col gap-2 md:gap-4">
+          <div class="aspect-[9/16] rounded-2xl overflow-hidden ambient-shadow">
+            <img loading="lazy" decoding="async" class="w-full h-full object-cover"
               data-alt="A high-end smartphone screen showing a professional Instagram Reel with dynamic typography and elegant transitions. The video features a luxury lifestyle theme with crisp resolution and vibrant colors. The background is a blurred, high-fashion editorial setting, reflecting the sophisticated aesthetic of top-tier social media content."
               src="https://lh3.googleusercontent.com/aida-public/AB6AXuA9JRqJiyjnqBYo_tandfljuRrkEwuSwcH-VEEZBdEtIUgLfYkbSzsiuANdp9RCeOsdY9kITwOr-1cOBFVAywnJCoHWkI_L5rq08aBO2mGA_UvFe2hsGuVhe9i1kyPJkhFmYRJaX4ApUWGIDxaa5NWi2Mq_89irrbm0SNE1Q6ZAM5EHXSjgWI7nh11VtCQIITai8RLWyPRRFe7v8IrHkkVMNSMuD6vdRDDidF4CECv_ysOXPWIfn_gBd-bIcNIx8Jf-Dpx_82hHH0I" />
           </div>
-          <h3 class="font-headline-md text-headline-md text-center">REELS</h3>
+          <h3 class="font-headline-md-mobile md:font-headline-md text-headline-md-mobile md:text-headline-md text-center">REELS</h3>
         </div>
-        <div class="flex flex-col gap-4 mt-8">
-          <div class="aspect-[9/16] rounded-xl overflow-hidden ambient-shadow">
-            <img class="w-full h-full object-cover"
+        <div class="flex flex-col gap-2 md:gap-4 lg:mt-8">
+          <div class="aspect-[9/16] rounded-2xl overflow-hidden ambient-shadow">
+            <img loading="lazy" decoding="async" class="w-full h-full object-cover"
               data-alt="A minimalist smartphone mockup displaying a series of high-fashion Instagram Stories. The layout is clean with generous white space and elegant serif typography. The lighting is soft and editorial, showcasing a brand's daily narrative in a premium, curated way. Charcoal and beige tones dominate the visual composition."
               src="https://lh3.googleusercontent.com/aida-public/AB6AXuCe6KeLPOCjgGYu9n8pnrxsj9VzgqaGfJPeDv7ED25i4j7QBak2SDWdmD2Z3x50QgZ0U09YYnwMADWLQxVxWeRIl3adODJ0dOZBEq0gwLsA_1IWBFBFUZ6qIHODtIapDzQwjdkWw9Lqer09BUXQYARAvQC0OkodT40Lmxqptwl7HvKjrYad2vXjOp4PQt_MG9O9Mtgg-9Q5Bk5Kt-78wEU8s65mNz98bIozltb5ICZz4duMf_bGn3U3TD_G7UNFS-xLheFompWHal4" />
           </div>
-          <h3 class="font-headline-md text-headline-md text-center">STORIES</h3>
+          <h3 class="font-headline-md-mobile md:font-headline-md text-headline-md-mobile md:text-headline-md text-center">STORIES</h3>
         </div>
-        <div class="flex flex-col gap-4">
-          <div class="aspect-[9/16] rounded-xl overflow-hidden ambient-shadow">
-            <img class="w-full h-full object-cover"
+        <div class="flex flex-col gap-2 md:gap-4">
+          <div class="aspect-[9/16] rounded-2xl overflow-hidden ambient-shadow">
+            <img loading="lazy" decoding="async" class="w-full h-full object-cover"
               data-alt="An artistic representation of a curated Instagram feed on a mobile device. Each square grid item features high-quality photography with a consistent warm-brown and cream filter. The overall look is balanced, symmetrical, and visually stunning, representing professional creative direction for a luxury brand presence."
               src="https://lh3.googleusercontent.com/aida-public/AB6AXuCtDZd4qBKD_96oQC9YZzCP3072UMNx7SZ8lb2YcM80WymXlSPZBHZ9FwHtg-HMuyf45ls6TD1jYIv7pJmHAbCKGsJesjfOKvun-EoOoiKhQOze8N3_5ZFapvdVD4ixH0zgBZka1vh_LouHZB3uYr3jSi35Lne1U9spT0WSTVihVCMuaq_rFmvE-RP604P42MBbpTLcZ1Ezq0NIfmemy2_bwTtj8ri_SETJEVceYPg3NBtS-Z201-NrQf9T39JimvX7iMmuqZarNWs" />
           </div>
-          <h3 class="font-headline-md text-headline-md text-center">CURATED FEED</h3>
+          <h3 class="font-headline-md-mobile md:font-headline-md text-headline-md-mobile md:text-headline-md text-center">CURATED FEED</h3>
         </div>
-        <div class="flex flex-col gap-4 mt-8">
-          <div class="aspect-[9/16] rounded-xl overflow-hidden ambient-shadow">
-            <img class="w-full h-full object-cover"
+        <div class="flex flex-col gap-2 md:gap-4 lg:mt-8">
+          <div class="aspect-[9/16] rounded-2xl overflow-hidden ambient-shadow">
+            <img loading="lazy" decoding="async" class="w-full h-full object-cover"
               data-alt="A creative close-up of a digital screen showing a high volume of positive social media engagement, including likes, comments, and shares represented by clean, minimalist icons. The interface is modern and sophisticated, bathed in a soft golden glow that emphasizes organic community growth and brand interaction."
               src="https://lh3.googleusercontent.com/aida-public/AB6AXuAyDl6SPACiq50voMaACnJ7l7Ony45o-3NKlmEAga3r-IJkTmoWHQmbGFdWVF78SGVXgq_3SQYrSF5LjnaVcKKLCnHKkbOUVF8EK2hQ1tBAkTZKqHf3zQKK5fWx4Kt6VMGhSonnr9j07nk4voyQvGdpA3s7R9AjOLDoXuFrPH3h_fM1KsXPdzCh4jzkrY4X-r-ugNAKsaS8CRm43e4HLcWcFT4qsjttBvdMayZ5wdlGjsHU_W5V8rl2u-xhGsbP4ht6TOrHI2bksHA" />
           </div>
-          <h3 class="font-headline-md text-headline-md text-center">ENGAGEMENT</h3>
+          <h3 class="font-headline-md-mobile md:font-headline-md text-headline-md-mobile md:text-headline-md text-center">ENGAGEMENT</h3>
         </div>
       </div>
     </section>
     <!-- 6. Growth Roadmap -->
-    <section class="py-stack-xl bg-surface-container-low">
-      <div class="max-w-[1440px] mx-auto px-margin-desktop">
-        <h2 class="font-headline-lg text-headline-lg mb-stack-lg text-center">Growth Roadmap: Monthly Flow</h2>
-        <div class="overflow-hidden rounded-xl border border-outline/10 bg-surface ambient-shadow">
+    <section class="py-12 md:py-[160px] bg-surface-container-low">
+      <div class="max-w-[1440px] mx-auto px-6 md:px-20">
+        <h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg mb-8 md:mb-20 text-center">Growth Roadmap: Monthly Flow</h2>
+        
+        <!-- Desktop Table View -->
+        <div class="hidden md:block overflow-hidden rounded-xl border border-outline/10 bg-surface ambient-shadow">
           <table class="w-full text-left border-collapse">
             <thead class="bg-primary text-on-primary">
               <tr>
@@ -474,45 +492,93 @@
             </tbody>
           </table>
         </div>
+
+        <!-- Mobile Card View -->
+        <div class="block md:hidden space-y-4">
+          <!-- Card 1 -->
+          <div class="bg-surface border border-outline/5 rounded-2xl p-5 ambient-shadow flex flex-col gap-3">
+            <div class="flex justify-between items-center border-b border-outline/5 pb-2">
+              <span class="font-headline-md-mobile text-headline-md-mobile text-primary font-semibold">High-Value Reels</span>
+              <span class="bg-secondary/15 text-secondary px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider whitespace-nowrap">3-4 / Wk</span>
+            </div>
+            <div class="space-y-1">
+              <span class="text-[10px] uppercase tracking-wider text-on-surface-variant/70 font-bold">Strategic Goal</span>
+              <p class="font-body-md text-sm text-on-surface">Reach Expansion &amp; Discovery</p>
+            </div>
+          </div>
+          <!-- Card 2 -->
+          <div class="bg-surface border border-outline/5 rounded-2xl p-5 ambient-shadow flex flex-col gap-3">
+            <div class="flex justify-between items-center border-b border-outline/5 pb-2">
+              <span class="font-headline-md-mobile text-headline-md-mobile text-primary font-semibold">Educational Carousels</span>
+              <span class="bg-secondary/15 text-secondary px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider whitespace-nowrap">2 / Wk</span>
+            </div>
+            <div class="space-y-1">
+              <span class="text-[10px] uppercase tracking-wider text-on-surface-variant/70 font-bold">Strategic Goal</span>
+              <p class="font-body-md text-sm text-on-surface">Niche Authority &amp; Saves</p>
+            </div>
+          </div>
+          <!-- Card 3 -->
+          <div class="bg-surface border border-outline/5 rounded-2xl p-5 ambient-shadow flex flex-col gap-3">
+            <div class="flex justify-between items-center border-b border-outline/5 pb-2">
+              <span class="font-headline-md-mobile text-headline-md-mobile text-primary font-semibold">Daily Stories</span>
+              <span class="bg-secondary/15 text-secondary px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider whitespace-nowrap">Daily</span>
+            </div>
+            <div class="space-y-1">
+              <span class="text-[10px] uppercase tracking-wider text-on-surface-variant/70 font-bold">Strategic Goal</span>
+              <p class="font-body-md text-sm text-on-surface">Audience Nurturing &amp; Trust</p>
+            </div>
+          </div>
+          <!-- Card 4 -->
+          <div class="bg-surface border border-outline/5 rounded-2xl p-5 ambient-shadow flex flex-col gap-3">
+            <div class="flex justify-between items-center border-b border-outline/5 pb-2">
+              <span class="font-headline-md-mobile text-headline-md-mobile text-primary font-semibold">Static Brand Visuals</span>
+              <span class="bg-secondary/15 text-secondary px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider whitespace-nowrap">1 / Wk</span>
+            </div>
+            <div class="space-y-1">
+              <span class="text-[10px] uppercase tracking-wider text-on-surface-variant/70 font-bold">Strategic Goal</span>
+              <p class="font-body-md text-sm text-on-surface">Aesthetic Consistency</p>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
     <!-- 7. Removed Moodboard section per request -->
 
 
     <!-- 10. Why Atharva Media Works -->
-    <section class="py-stack-xl bg-surface-container-highest">
-      <div class="max-w-[1440px] mx-auto px-margin-desktop">
-        <div class="grid md:grid-cols-2 gap-stack-lg items-center">
-          <h2 class="font-display-lg text-display-lg leading-none">Why <br />Atharva <br />Media <br />Works</h2>
-          <div class="space-y-gutter">
-            <div class="flex gap-6 items-start">
+    <section class="py-12 md:py-[160px] bg-surface-container-highest">
+      <div class="max-w-[1440px] mx-auto px-6 md:px-20">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-20 items-center">
+          <h2 class="font-display-lg text-display-lg-mobile md:text-display-lg leading-[1.05] md:leading-none mb-2 md:mb-0">Why <br class="hidden md:inline" />Atharva <br class="hidden md:inline" />Media <br class="hidden md:inline" />Works</h2>
+          <div class="space-y-6 md:space-y-gutter">
+            <div class="flex gap-4 md:gap-6 items-start">
               <span class="material-symbols-outlined text-primary text-3xl">trending_up</span>
               <div>
-                <h3 class="font-headline-md text-headline-md">Trend-Focused</h3>
+                <h3 class="font-headline-md-mobile md:font-headline-md text-headline-md-mobile md:text-headline-md">Trend-Focused</h3>
                 <p class="font-body-md text-body-md text-on-surface-variant">We don't follow trends; we identify them
                   before they saturate the market.</p>
               </div>
             </div>
-            <div class="flex gap-6 items-start">
+            <div class="flex gap-4 md:gap-6 items-start">
               <span class="material-symbols-outlined text-primary text-3xl">camera</span>
               <div>
-                <h3 class="font-headline-md text-headline-md">Creative Direction</h3>
+                <h3 class="font-headline-md-mobile md:font-headline-md text-headline-md-mobile md:text-headline-md">Creative Direction</h3>
                 <p class="font-body-md text-body-md text-on-surface-variant">Bespoke visual narratives that resonate
                   with premium audiences.</p>
               </div>
             </div>
-            <div class="flex gap-6 items-start">
+            <div class="flex gap-4 md:gap-6 items-start">
               <span class="material-symbols-outlined text-primary text-3xl">chat</span>
               <div>
-                <h3 class="font-headline-md text-headline-md">Communication</h3>
+                <h3 class="font-headline-md-mobile md:font-headline-md text-headline-md-mobile md:text-headline-md">Communication</h3>
                 <p class="font-body-md text-body-md text-on-surface-variant">Seamless reporting and transparent
                   collaboration at every stage.</p>
               </div>
             </div>
-            <div class="flex gap-6 items-start">
+            <div class="flex gap-4 md:gap-6 items-start">
               <span class="material-symbols-outlined text-primary text-3xl">location_on</span>
               <div>
-                <h3 class="font-headline-md text-headline-md">Local Growth</h3>
+                <h3 class="font-headline-md-mobile md:font-headline-md text-headline-md-mobile md:text-headline-md">Local Growth</h3>
                 <p class="font-body-md text-body-md text-on-surface-variant">Deep understanding of local markets paired
                   with global standards.</p>
               </div>
@@ -522,21 +588,21 @@
       </div>
     </section>
     <!-- 11. Final CTA -->
-    <section class="py-stack-xl bg-surface" id="contact">
+    <section class="py-12 md:py-[160px] bg-surface px-6 md:px-20" id="contact">
       <div
-        class="max-w-[1440px] mx-auto px-margin-desktop text-center py-stack-lg rounded-xl bg-primary text-on-primary">
-        <h2 class="font-headline-xl text-headline-xl mb-stack-md px-4">Let’s Build A Brand People Remember</h2>
-        <div class="flex flex-col md:flex-row justify-center items-center gap-stack-md mt-stack-md">
-          <a class="font-headline-md text-headline-md border-b-2 border-secondary pb-2 hover:text-secondary transition-colors"
+        class="max-w-[1440px] mx-auto text-center py-10 px-6 md:py-20 md:px-20 rounded-3xl bg-primary text-on-primary">
+        <h2 class="font-headline-xl-mobile md:font-headline-xl text-headline-xl-mobile md:text-headline-xl mb-6 md:mb-10 px-4 leading-[1.1] md:leading-none">Let’s Build A Brand People Remember</h2>
+        <div class="flex flex-col md:flex-row justify-center items-center gap-6 md:gap-10 mt-6 md:mt-10">
+          <a class="font-headline-md-mobile md:font-headline-md text-headline-md-mobile md:text-headline-md border-b-2 border-secondary pb-2 hover:text-secondary transition-colors break-all"
             href="mailto:ATHARVAVADNERE0901@GMAIL.COM">ATHARVAVADNERE0901@GMAIL.COM</a>
-          <a class="font-headline-md text-headline-md border-b-2 border-secondary pb-2 hover:text-secondary transition-colors"
+          <a class="font-headline-md-mobile md:font-headline-md text-headline-md-mobile md:text-headline-md border-b-2 border-secondary pb-2 hover:text-secondary transition-colors"
             href="tel:8766821332">8766821332</a>
-          <a class="font-headline-md text-headline-md border-b-2 border-secondary pb-2 hover:text-secondary transition-colors"
+          <a class="font-headline-md-mobile md:font-headline-md text-headline-md-mobile md:text-headline-md border-b-2 border-secondary pb-2 hover:text-secondary transition-colors"
             href="https://instagram.com/ATHARVAMEDIAWORKS" target="_blank"
             rel="noopener noreferrer">@ATHARVAMEDIAWORKS</a>
         </div>
         <button
-          class="mt-stack-lg bg-on-primary text-primary px-12 py-5 rounded-full font-label-lg text-label-lg hover:bg-secondary hover:text-on-secondary transition-all">START
+          class="mt-8 md:mt-20 bg-on-primary text-primary px-8 py-4 md:px-12 md:py-5 rounded-full font-label-lg text-label-lg hover:bg-secondary hover:text-on-secondary transition-all active:scale-95 duration-200">START
           YOUR JOURNEY</button>
       </div>
     </section>
@@ -544,13 +610,13 @@
   <!-- Footer -->
   <footer class="bg-surface border-t border-outline/10">
     <div
-      class="flex flex-col md:flex-row justify-between items-start gap-stack-md max-w-[1440px] mx-auto px-margin-desktop py-stack-lg">
+      class="flex flex-col md:flex-row justify-between items-start gap-8 md:gap-10 max-w-[1440px] mx-auto px-6 md:px-20 py-10 md:py-20">
       <div class="space-y-4">
-        <div class="font-headline-lg text-headline-lg text-primary">ATHARVA MEDIA WORKS</div>
+        <div class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary">ATHARVA MEDIA WORKS</div>
         <p class="font-body-md text-body-md text-on-surface-variant max-w-xs">Elevating digital footprints through
           intentional content and strategic brand direction.</p>
       </div>
-      <div class="grid grid-cols-2 gap-x-stack-lg gap-y-4">
+      <div class="grid grid-cols-2 gap-x-8 md:gap-x-20 gap-y-4">
         <a class="font-label-lg text-label-lg text-on-surface-variant hover:text-secondary transition-colors"
           href="#services">SERVICES</a>
         <a class="font-label-lg text-label-lg text-on-surface-variant hover:text-secondary transition-colors"
@@ -560,12 +626,34 @@
         <a class="font-label-lg text-label-lg text-on-surface-variant hover:text-secondary transition-colors"
           href="mailto:ATHARVAVADNERE0901@GMAIL.COM">EMAIL</a>
       </div>
-      <div class="text-right">
+      <div class="text-left md:text-right mt-4 md:mt-0">
         <p class="font-label-lg text-label-lg text-on-surface-variant">© 2026 ATHARVA MEDIA WORKS. ALL RIGHTS RESERVED.
         </p>
       </div>
     </div>
   </footer>
+
+  <!-- Mobile Drawer Toggle Script -->
+  <script>
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuIcon = mobileMenuBtn ? mobileMenuBtn.querySelector('.material-symbols-outlined') : null;
+
+    function toggleMobileMenu() {
+      if (mobileMenu && menuIcon) {
+        mobileMenu.classList.toggle('hidden');
+        if (mobileMenu.classList.contains('hidden')) {
+          menuIcon.textContent = 'menu';
+        } else {
+          menuIcon.textContent = 'close';
+        }
+      }
+    }
+
+    if (mobileMenuBtn) {
+      mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+    }
+  </script>
 </body>
 
 </html>
